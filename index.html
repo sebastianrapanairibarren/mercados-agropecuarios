@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📊 Mercados Agropecuarios - Guía Interactiva</title>
+    <title>🎯 Final Mercados Agropecuarios - 5 Horas</title>
     <style>
         * {
             margin: 0;
@@ -26,6 +26,7 @@
             box-shadow: 0 0 50px rgba(0,0,0,0.1);
         }
 
+        /* HEADER SIMPLE */
         .header {
             background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
@@ -41,11 +42,69 @@
             margin-bottom: 10px;
         }
 
-        .header p {
-            opacity: 0.9;
-            font-size: 1.1em;
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
         }
 
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* PLAN DE 5 HORAS */
+        .study-plan {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 15px;
+        }
+
+        .plan-blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .plan-block {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .plan-block:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .plan-block.completed {
+            background: rgba(46, 204, 113, 0.5);
+            opacity: 0.8;
+        }
+
+        .plan-block.active {
+            background: rgba(241, 196, 15, 0.3);
+            border: 2px solid #f1c40f;
+        }
+
+        /* TABS */
         .tabs {
             display: flex;
             background: #34495e;
@@ -74,6 +133,7 @@
             box-shadow: inset 0 -3px 0 #2980b9;
         }
 
+        /* CONTENT */
         .content {
             padding: 30px;
             min-height: 60vh;
@@ -81,63 +141,147 @@
 
         .tab-content {
             display: none;
+            animation: fadeIn 0.3s ease;
         }
 
         .tab-content.active {
             display: block;
         }
 
-        /* Mapa Conceptual */
-        .concept-map {
-            position: relative;
-            height: 600px;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-radius: 15px;
-            padding: 20px;
-            overflow: hidden;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .concept-node {
-            position: absolute;
-            padding: 10px 15px;
+        /* CONCEPT CARDS */
+        .concept-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #3498db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .concept-card.mastered {
+            border-left-color: #2ecc71;
+            background: #d5f4e6;
+        }
+
+        .concept-card.studying {
+            border-left-color: #f39c12;
+            background: #fef9e7;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .card-status {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .status-new { background: #e8f4fd; color: #3498db; }
+        .status-studying { background: #fef9e7; color: #f39c12; }
+        .status-mastered { background: #d5f4e6; color: #27ae60; }
+
+        /* QUIZ */
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .question-counter {
+            background: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .quiz-score {
+            background: #2ecc71;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .question {
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .options {
+            list-style: none;
+        }
+
+        .options li {
+            background: #f8f9fa;
+            margin: 15px 0;
+            padding: 18px 20px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             border: 2px solid transparent;
-            text-align: center;
-            font-weight: bold;
-            font-size: 0.85em;
-            min-width: 120px;
+            font-size: 1.1em;
         }
 
-        .concept-node:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        .options li:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
         }
 
-        .concept-node.selected {
+        .options li.selected {
+            border-color: #3498db;
+            background: #ebf3fd;
+        }
+
+        .options li.correct {
+            border-color: #2ecc71;
+            background: #d5f4e6;
+        }
+
+        .options li.incorrect {
             border-color: #e74c3c;
-            transform: scale(1.1);
+            background: #fadbd8;
         }
 
-        .node-main { background: linear-gradient(135deg, #3498db, #2980b9); color: white; }
-        .node-ambiente { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; }
-        .node-mercado { background: linear-gradient(135deg, #f39c12, #d68910); color: white; }
-        .node-contrato { background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; }
-        .node-gobernanza { background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; }
-        .node-caso { background: linear-gradient(135deg, #34495e, #2c3e50); color: white; }
-
-        .concept-info {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
-            border-left: 4px solid #3498db;
-        }
-
-        /* Flashcards */
+        /* FLASHCARDS */
         .flashcard-container {
             display: flex;
             justify-content: center;
@@ -146,7 +290,7 @@
 
         .flashcard {
             width: 400px;
-            height: 250px;
+            height: 280px;
             perspective: 1000px;
             cursor: pointer;
         }
@@ -173,8 +317,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .flashcard-front {
@@ -188,20 +332,57 @@
             transform: rotateY(180deg);
         }
 
-        .flashcard-controls {
-            text-align: center;
-            margin: 20px 0;
+        /* SIMULATOR */
+        .simulator {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
         }
 
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        /* BUTTONS */
         .btn {
             padding: 12px 25px;
             border: none;
             border-radius: 25px;
             cursor: pointer;
-            margin: 0 10px;
+            margin: 8px;
             font-size: 1em;
             transition: all 0.3s ease;
             font-weight: bold;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .btn-primary {
@@ -219,122 +400,49 @@
             color: white;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
         }
 
-        /* Quiz */
-        .quiz-container {
+        /* RESULT BOXES */
+        .result-box {
             background: white;
             border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        .question {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            font-weight: bold;
-        }
-
-        .options {
-            list-style: none;
-        }
-
-        .options li {
-            background: #f8f9fa;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .options li:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
-        }
-
-        .options li.selected {
-            border-color: #3498db;
-            background: #ebf3fd;
-        }
-
-        .options li.correct {
-            border-color: #2ecc71;
-            background: #d5f4e6;
-        }
-
-        .options li.incorrect {
-            border-color: #e74c3c;
-            background: #fadbd8;
-        }
-
-        .quiz-result {
-            text-align: center;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-
-        .quiz-result.good {
-            background: #d5f4e6;
-            color: #27ae60;
-        }
-
-        .quiz-result.bad {
-            background: #fadbd8;
-            color: #c0392b;
-        }
-
-        /* Simulador */
-        .simulator {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 20px;
-        }
-
-        .input-group {
-            margin: 15px 0;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s ease;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-
-        .simulation-result {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
+            padding: 25px;
             margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border-left: 4px solid #3498db;
         }
 
-        /* Responsive */
+        .result-success {
+            border-left-color: #2ecc71;
+            background: #d5f4e6;
+        }
+
+        .result-error {
+            border-left-color: #e74c3c;
+            background: #fadbd8;
+        }
+
+        /* PROGRESS BAR */
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #ecf0f1;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .content {
                 padding: 15px;
@@ -342,542 +450,672 @@
             
             .flashcard {
                 width: 300px;
-                height: 200px;
+                height: 220px;
             }
             
-            .concept-map {
-                height: 500px;
+            .stats {
+                flex-direction: column;
+                gap: 15px;
             }
-            
-            .concept-node {
-                font-size: 0.7em;
-                min-width: 100px;
-                padding: 8px 10px;
+
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .plan-blocks {
+                grid-template-columns: 1fr;
             }
         }
 
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #ecf0f1;
-            border-radius: 5px;
-            overflow: hidden;
-            margin: 20px 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(135deg, #3498db, #2980b9);
-            transition: width 0.3s ease;
-            border-radius: 5px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .stat-number {
-            font-size: 2em;
+        /* TIMER */
+        .timer {
+            background: rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1em;
             font-weight: bold;
-            color: #3498db;
+            margin: 10px;
         }
 
-        .stat-label {
-            color: #7f8c8d;
-            margin-top: 5px;
+        /* QUICK ACTIONS */
+        .quick-actions {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .quick-btn {
+            display: inline-block;
+            padding: 15px 25px;
+            margin: 5px;
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .quick-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- HEADER -->
         <div class="header">
-            <h1>📊 Mercados Agropecuarios</h1>
-            <p>Guía Interactiva de Estudio - Universidad de Buenos Aires</p>
+            <h1>🎯 Final Mercados Agropecuarios</h1>
+            <p>Estudio intensivo de 5 horas - UBA</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number" id="questionsCount">0</div>
+                    <div class="stat-label">Preguntas</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="correctCount">0</div>
+                    <div class="stat-label">Correctas</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="accuracyPercent">0%</div>
+                    <div class="stat-label">Precisión</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="conceptsCount">0</div>
+                    <div class="stat-label">Conceptos</div>
+                </div>
+            </div>
         </div>
 
+        <!-- PLAN DE 5 HORAS -->
+        <div class="study-plan">
+            <h2>📅 Plan de Estudio Intensivo (5 horas)</h2>
+            <p>Cada bloque: 45-60 minutos. Breaks de 10 minutos entre bloques.</p>
+            
+            <div class="plan-blocks">
+                <div class="plan-block active" onclick="goToPhase(1)">
+                    <h3>🧠 Fase 1</h3>
+                    <p><strong>Conceptos Base</strong></p>
+                    <small>Ambientes + Micro Learning</small>
+                </div>
+                <div class="plan-block" onclick="goToPhase(2)">
+                    <h3>💼 Fase 2</h3>
+                    <p><strong>Contratos</strong></p>
+                    <small>CALL/PUT + Simulador</small>
+                </div>
+                <div class="plan-block" onclick="goToPhase(3)">
+                    <h3>🏢 Fase 3</h3>
+                    <p><strong>Gobernanza</strong></p>
+                    <small>PRINEX + Specialties</small>
+                </div>
+                <div class="plan-block" onclick="goToPhase(4)">
+                    <h3>🔄 Fase 4</h3>
+                    <p><strong>Repaso</strong></p>
+                    <small>Flashcards + Quiz</small>
+                </div>
+                <div class="plan-block" onclick="goToPhase(5)">
+                    <h3>🎯 Fase 5</h3>
+                    <p><strong>Final</strong></p>
+                    <small>Simulacro + Tips</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="quick-actions">
+            <button class="quick-btn" onclick="quickQuiz()">⚡ Quiz Rápido</button>
+            <button class="quick-btn" onclick="randomCard()">🃏 Carta Random</button>
+            <button class="quick-btn" onclick="openSimulator()">🎮 Simulador</button>
+        </div>
+
+        <!-- TABS -->
         <div class="tabs">
-            <button class="tab active" onclick="showTab('mapa')">🗺️ Mapa</button>
+            <button class="tab active" onclick="showTab('concepts')">🧠 Conceptos</button>
+            <button class="tab" onclick="showTab('quiz')">⚡ Quiz</button>
             <button class="tab" onclick="showTab('flashcards')">🃏 Flashcards</button>
-            <button class="tab" onclick="showTab('quiz')">🧠 Quiz</button>
-            <button class="tab" onclick="showTab('simulador')">🎮 Simulador</button>
-            <button class="tab" onclick="showTab('resumen')">📋 Resumen</button>
+            <button class="tab" onclick="showTab('simulator')">🎮 Simulador</button>
+            <button class="tab" onclick="showTab('tips')">💡 Tips Final</button>
         </div>
 
         <div class="content">
-            <!-- Mapa Conceptual -->
-            <div id="mapa" class="tab-content active">
-                <h2>🗺️ Mapa Conceptual Interactivo</h2>
-                <p>Haz clic en cualquier concepto para ver información detallada:</p>
+            <!-- CONCEPTOS -->
+            <div id="concepts" class="tab-content active">
+                <h2>🧠 Conceptos Clave - Aprende Rápido</h2>
+                <p>Conceptos esenciales organizados para máxima retención:</p>
                 
-                <div class="concept-map">
-                    <!-- Nodos del mapa conceptual -->
-                    <div class="concept-node node-main" data-concept="main" style="top: 20px; left: 50%; transform: translateX(-50%);">
-                        MERCADOS<br>AGROPECUARIOS
-                    </div>
-                    
-                    <div class="concept-node node-ambiente" data-concept="institucional" style="top: 120px; left: 50px;">
-                        Ambiente<br>Institucional
-                    </div>
-                    <div class="concept-node node-ambiente" data-concept="organizacional" style="top: 120px; left: 220px;">
-                        Ambiente<br>Organizacional
-                    </div>
-                    <div class="concept-node node-ambiente" data-concept="tecnologico" style="top: 120px; left: 390px;">
-                        Ambiente<br>Tecnológico
-                    </div>
-                    
-                    <div class="concept-node node-mercado" data-concept="hortalizas" style="top: 220px; left: 80px;">
-                        Mercado<br>Hortalizas
-                    </div>
-                    <div class="concept-node node-mercado" data-concept="frutas" style="top: 220px; left: 250px;">
-                        Mercado<br>Frutas
-                    </div>
-                    <div class="concept-node node-mercado" data-concept="granos" style="top: 220px; left: 420px;">
-                        Mercado<br>Granos
-                    </div>
-                    
-                    <div class="concept-node node-contrato" data-concept="call" style="top: 320px; left: 50px;">
-                        Contrato<br>CALL
-                    </div>
-                    <div class="concept-node node-contrato" data-concept="put" style="top: 320px; left: 180px;">
-                        Contrato<br>PUT
-                    </div>
-                    <div class="concept-node node-contrato" data-concept="futuros" style="top: 320px; left: 310px;">
-                        Contratos<br>Futuros
-                    </div>
-                    
-                    <div class="concept-node node-gobernanza" data-concept="commodities" style="top: 420px; left: 100px;">
-                        Commodities
-                    </div>
-                    <div class="concept-node node-gobernanza" data-concept="specialties" style="top: 420px; left: 300px;">
-                        Specialties
-                    </div>
-                    
-                    <div class="concept-node node-caso" data-concept="prinex" style="top: 520px; left: 200px;">
-                        Caso PRINEX
-                    </div>
-                </div>
-
-                <div class="concept-info" id="conceptInfo">
-                    <h3>💡 Información del Concepto</h3>
-                    <p>Selecciona cualquier concepto del mapa para ver información detallada, ejemplos y analogías.</p>
+                <div id="conceptsList">
+                    <!-- Se generan dinámicamente -->
                 </div>
             </div>
 
-            <!-- Flashcards -->
+            <!-- QUIZ -->
+            <div id="quiz" class="tab-content">
+                <h2>⚡ Quiz Interactivo</h2>
+                
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <div class="question-counter" id="questionCounter">Pregunta 1 de 10</div>
+                        <div class="quiz-score" id="quizScore">Score: 0/0</div>
+                    </div>
+                    
+                    <div class="question" id="questionText">Cargando pregunta...</div>
+                    
+                    <ul class="options" id="optionsList">
+                        <!-- Se generan dinámicamente -->
+                    </ul>
+                    
+                    <div id="questionResult" style="display: none;"></div>
+                    
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" style="display: none;">Siguiente ➡️</button>
+                        <button class="btn btn-success" onclick="restartQuiz()" id="restartBtn" style="display: none;">Nuevo Quiz 🔄</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLASHCARDS -->
             <div id="flashcards" class="tab-content">
-                <h2>🃏 Flashcards de Repaso</h2>
-                <p>Haz clic en la tarjeta para ver la respuesta. Usa los botones para navegar.</p>
+                <h2>🃏 Flashcards Inteligentes</h2>
+                <p>Haz clic en la tarjeta para voltearla. Usa los botones para navegar.</p>
                 
                 <div class="flashcard-container">
                     <div class="flashcard" id="flashcard" onclick="flipCard()">
                         <div class="flashcard-inner">
                             <div class="flashcard-front">
-                                <div>
-                                    <h3>¿Qué es un contrato CALL?</h3>
-                                    <p style="margin-top: 10px; opacity: 0.8;">Haz clic para ver la respuesta</p>
+                                <div id="cardQuestion">
+                                    <h3>Cargando tarjeta...</h3>
                                 </div>
                             </div>
                             <div class="flashcard-back">
-                                <div>
-                                    <h3>Contrato CALL</h3>
-                                    <p>Opción de compra que da derecho (no obligación) a comprar un futuro a precio fijo.</p>
-                                    <p style="margin-top: 10px;">💡 Como reservar entrada a recital a precio fijo</p>
+                                <div id="cardAnswer">
+                                    <h3>Respuesta</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="flashcard-controls">
-                    <button class="btn btn-primary" onclick="previousCard()">⬅️ Anterior</button>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn btn-primary" onclick="prevCard()">⬅️ Anterior</button>
                     <button class="btn btn-warning" onclick="flipCard()">🔄 Voltear</button>
                     <button class="btn btn-primary" onclick="nextCard()">Siguiente ➡️</button>
                 </div>
-
-                <div class="progress-bar">
-                    <div class="progress-fill" id="flashcardProgress" style="width: 10%"></div>
-                </div>
                 
-                <p style="text-align: center; color: #7f8c8d;">
-                    Tarjeta <span id="cardNumber">1</span> de <span id="totalCards">10</span>
-                </p>
-            </div>
-
-            <!-- Quiz -->
-            <div id="quiz" class="tab-content">
-                <h2>🧠 Quiz de Autoevaluación</h2>
-                
-                <div class="stats">
-                    <div class="stat-card">
-                        <div class="stat-number" id="correctAnswers">0</div>
-                        <div class="stat-label">Respuestas Correctas</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="totalQuestions">0</div>
-                        <div class="stat-label">Preguntas Contestadas</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="accuracy">0%</div>
-                        <div class="stat-label">Precisión</div>
-                    </div>
-                </div>
-
-                <div class="quiz-container" id="quizContainer">
-                    <div class="question" id="question">¿Cuál es el punto crítico del ambiente institucional en el sistema de carne bovina?</div>
-                    <ul class="options" id="options">
-                        <li onclick="selectOption(0)">Falta de tecnología avanzada</li>
-                        <li onclick="selectOption(1)">Inestabilidad económica y ausencia de políticas sectoriales de largo plazo</li>
-                        <li onclick="selectOption(2)">Exceso de coordinación entre actores</li>
-                        <li onclick="selectOption(3)">Demasiada integración vertical</li>
-                    </ul>
-                    <div class="quiz-result" id="quizResult" style="display: none;"></div>
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" style="display: none;">Siguiente Pregunta</button>
-                        <button class="btn btn-success" onclick="restartQuiz()" id="restartBtn" style="display: none;">Reiniciar Quiz</button>
-                    </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <span>Tarjeta <span id="cardNumber">1</span> de <span id="totalCards">10</span></span>
                 </div>
             </div>
 
-            <!-- Simulador -->
-            <div id="simulador" class="tab-content">
+            <!-- SIMULADOR -->
+            <div id="simulator" class="tab-content">
                 <h2>🎮 Simulador de Contratos</h2>
-                <p>Simula diferentes escenarios de contratos CALL y PUT para entender mejor su funcionamiento:</p>
+                <p>Practica con escenarios reales de CALL y PUT:</p>
                 
                 <div class="simulator">
-                    <h3>📈 Configuración del Contrato</h3>
+                    <h3>📊 Configuración del Contrato</h3>
                     
-                    <div class="input-group">
-                        <label>Tipo de Contrato:</label>
-                        <select id="contractType">
-                            <option value="call">CALL (Opción de Compra)</option>
-                            <option value="put">PUT (Opción de Venta)</option>
-                        </select>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>🎯 Tipo de Contrato:</label>
+                            <select id="contractType">
+                                <option value="call">CALL (Opción de Compra)</option>
+                                <option value="put">PUT (Opción de Venta)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>💰 Prima Pagada ($):</label>
+                            <input type="number" id="premium" value="10" min="1" max="50">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>🎯 Precio de Ejercicio ($):</label>
+                            <input type="number" id="strikePrice" value="100" min="50" max="150">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>📈 Precio Final ($):</label>
+                            <input type="number" id="marketPrice" value="110" min="50" max="150">
+                        </div>
                     </div>
                     
-                    <div class="input-group">
-                        <label>Prima Pagada ($):</label>
-                        <input type="number" id="premium" value="10" min="1">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>Precio de Ejercicio ($):</label>
-                        <input type="number" id="strikePrice" value="100" min="1">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label>Precio Final del Mercado ($):</label>
-                        <input type="number" id="marketPrice" value="120" min="1">
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button class="btn btn-primary" onclick="calculateContract()">🧮 Calcular Resultado</button>
+                    <div style="text-align: center;">
+                        <button class="btn btn-primary" onclick="calculateResult()">🧮 Calcular</button>
+                        <button class="btn btn-warning" onclick="generateRandomScenario()">🎲 Escenario Aleatorio</button>
                     </div>
                 </div>
 
-                <div class="simulation-result" id="simulationResult" style="display: none;">
-                    <!-- Resultado de la simulación -->
+                <div id="simulatorResult" style="display: none;">
+                    <!-- Resultado aquí -->
                 </div>
             </div>
 
-            <!-- Resumen -->
-            <div id="resumen" class="tab-content">
-                <h2>📋 Resumen Ejecutivo</h2>
+            <!-- TIPS FINALES -->
+            <div id="tips" class="tab-content">
+                <h2>💡 Tips para el Final</h2>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                    <div class="quiz-container">
-                        <h3>🏛️ Ambientes del Sistema</h3>
-                        <ul style="list-style-type: none; padding: 0;">
-                            <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
-                                <strong>Institucional:</strong> Inestabilidad económica y falta de políticas
-                            </li>
-                            <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
-                                <strong>Organizacional:</strong> Cadena descoordinada y atomizada
-                            </li>
-                            <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
-                                <strong>Tecnológico:</strong> Bajo nivel de adopción e innovación
-                            </li>
-                        </ul>
+                <div class="concept-card">
+                    <div class="card-header">
+                        <div class="card-title">🎯 Estrategia de Examen</div>
                     </div>
+                    <p><strong>1.</strong> Lee toda la pregunta antes de ver opciones</p>
+                    <p><strong>2.</strong> Elimina opciones obviamente incorrectas</p>
+                    <p><strong>3.</strong> Busca palabras clave: "NO es", "EXCEPTO", "SIEMPRE"</p>
+                    <p><strong>4.</strong> Si dudas entre 2, ve con tu primera intuición</p>
+                </div>
 
-                    <div class="quiz-container">
-                        <h3>💼 Contratos Financieros</h3>
-                        <ul style="list-style-type: none; padding: 0;">
-                            <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
-                                <strong>CALL:</strong> Seguro contra subas (derecho a comprar)
-                            </li>
-                            <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
-                                <strong>PUT:</strong> Seguro contra bajas (derecho a vender)
-                            </li>
-                            <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
-                                <strong>FUTUROS:</strong> Compromiso firme (obligación)
-                            </li>
-                        </ul>
+                <div class="concept-card">
+                    <div class="card-header">
+                        <div class="card-title">⚠️ Errores Comunes</div>
                     </div>
+                    <p><strong>❌</strong> Decir que PRINEX es integración vertical</p>
+                    <p><strong>❌</strong> Confundir CALL con PUT</p>
+                    <p><strong>❌</strong> Olvidar los 3 ambientes del sistema cárnico</p>
+                    <p><strong>❌</strong> No distinguir commodities de specialties</p>
+                </div>
 
-                    <div class="quiz-container">
-                        <h3>🏗️ Estructuras de Gobernanza</h3>
-                        <ul style="list-style-type: none; padding: 0;">
-                            <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
-                                <strong>Commodities:</strong> Coordinación por mercado (precio)
-                            </li>
-                            <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
-                                <strong>Specialties:</strong> Estructuras híbridas (calidad)
-                            </li>
-                            <li style="margin: 10px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
-                                <strong>PRINEX:</strong> Coordinación sin integración vertical
-                            </li>
-                        </ul>
+                <div class="concept-card">
+                    <div class="card-header">
+                        <div class="card-title">✅ Palabras Clave</div>
                     </div>
+                    <p><strong>PRINEX:</strong> Sistema híbrido, NO integración vertical</p>
+                    <p><strong>CALL:</strong> Opción de compra, protege contra subas</p>
+                    <p><strong>PUT:</strong> Opción de venta, protege contra bajas</p>
+                    <p><strong>Commodities:</strong> Coordinación por mercado</p>
+                    <p><strong>Specialties:</strong> Estructuras híbridas</p>
+                </div>
 
-                    <div class="quiz-container">
-                        <h3>💡 Tips para el Examen</h3>
-                        <ul style="list-style-type: none; padding: 0;">
-                            <li style="margin: 10px 0; padding: 10px; background: #fff3cd; border-radius: 5px;">
-                                ❌ PRINEX NO es integración vertical
-                            </li>
-                            <li style="margin: 10px 0; padding: 10px; background: #fff3cd; border-radius: 5px;">
-                                ❌ No confundir CALL con PUT
-                            </li>
-                            <li style="margin: 10px 0; padding: 10px; background: #d1ecf1; border-radius: 5px;">
-                                ✅ Mencionar los tres ambientes siempre
-                            </li>
-                            <li style="margin: 10px 0; padding: 10px; background: #d1ecf1; border-radius: 5px;">
-                                ✅ Distinguir commodities vs specialties
-                            </li>
-                        </ul>
+                <div class="concept-card">
+                    <div class="card-header">
+                        <div class="card-title">🕐 Últimos 30 Minutos</div>
                     </div>
+                    <p><strong>1.</strong> Repasa flashcards más difíciles</p>
+                    <p><strong>2.</strong> Haz un último quiz completo</p>
+                    <p><strong>3.</strong> Lee analogías clave una vez más</p>
+                    <p><strong>4.</strong> Respira hondo y confía en tu preparación</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Datos de conceptos
-        const concepts = {
-            main: {
-                title: "🎯 Mercados Agropecuarios",
-                content: "Sistema complejo que incluye ambientes institucional, organizacional y tecnológico, diferentes tipos de mercados y estructuras de gobernanza."
-            },
-            institucional: {
-                title: "🏛️ Ambiente Institucional",
-                content: "Problemas: Inestabilidad económica, inflación, ausencia de políticas sectoriales de largo plazo. Afecta inversión y previsibilidad. 💡 Como intentar planificar un negocio cuando las reglas cambian constantemente."
-            },
-            organizacional: {
-                title: "🔗 Ambiente Organizacional",
-                content: "Cadena heterogénea y atomizada con múltiples actores. Falta integración y coordinación. 💡 Como orquesta donde cada músico toca por su cuenta sin director."
-            },
-            tecnologico: {
-                title: "🔬 Ambiente Tecnológico",
-                content: "Bajo nivel de adopción tecnológica, especialmente fuera de región pampeana. Limita productividad y competitividad. 💡 Como usar máquina de escribir vs computadora."
-            },
-            hortalizas: {
-                title: "🥬 Mercado de Hortalizas",
-                content: "Estrategias: Mejorar infraestructura, transparencia de precios, organización de productores, reducir pérdida postcosecha, trazabilidad."
-            },
-            frutas: {
-                title: "🍎 Mercado de Frutas",
-                content: "Bajar costos: Optimizar logística, compartir servicios, reducir intermediarios, digitalizar información. 💡 Como compartir Uber para bajar costos."
-            },
-            granos: {
-                title: "🌾 Mercado de Granos",
-                content: "Venta directa: menos escalones, más control, requiere escala. Venta indirecta: reduce riesgos, incrementa costos de transacción."
-            },
-            call: {
-                title: "📈 Contrato CALL",
-                content: "Opción de compra: derecho (no obligación) a comprar futuro a precio fijo. 💡 Como reservar entrada a recital a precio fijo por anticipado."
-            },
-            put: {
-                title: "📉 Contrato PUT",
-                content: "Opción de venta: derecho (no obligación) a vender futuro a precio fijo. Útil para asegurar precio mínimo. 💡 Como seguro de cosecha."
-            },
-            futuros: {
-                title: "📋 Contratos de Futuros",
-                content: "Compromiso firme de comprar/vender cantidad y calidad específica a precio pactado hoy, entrega futura. Mayoría se cancelan por compensación."
-            },
-            commodities: {
-                title: "📦 Commodities",
-                content: "Coordinación por mercado: transacciones por precio, contratos estandarizados, bajo control de calidad. 💡 Como feria libre."
-            },
-            specialties: {
-                title: "⭐ Specialties",
-                content: "Estructuras híbridas: alianzas, contratos formales, coordinan calidad y trazabilidad. 💡 Como franquicia premium con reglas estrictas."
-            },
-            prinex: {
-                title: "🏆 Caso PRINEX",
-                content: "NO es integración vertical. Sistema híbrido que articula productores, frigoríficos y supermercados por contratos de calidad. Marca: Novillo Pampeano."
-            }
+        // VARIABLES GLOBALES SIMPLIFICADAS
+        let stats = {
+            questions: 0,
+            correct: 0,
+            concepts: 0
         };
 
-        // Flashcards data
-        const flashcards = [
+        let currentQuestionIndex = 0;
+        let currentCardIndex = 0;
+        let selectedOption = -1;
+
+        // DATOS SIMPLIFICADOS
+        const concepts = [
             {
-                question: "¿Qué es un contrato CALL?",
-                answer: "Opción de compra que da derecho (no obligación) a comprar un futuro a precio fijo.\n\n💡 Como reservar entrada a recital a precio fijo"
+                id: 1,
+                title: '🏛️ Ambiente Institucional',
+                content: 'Inestabilidad económica + ausencia de políticas = problemas para inversión y previsibilidad',
+                details: 'La competencia por suelo con agricultura desplaza ganadería a tierras de menor calidad',
+                analogy: '💡 Como planificar un negocio cuando las reglas cambian constantemente',
+                status: 'new'
             },
             {
-                question: "¿Qué es un contrato PUT?",
-                answer: "Opción de venta que da derecho (no obligación) a vender un futuro a precio fijo.\n\n💡 Como seguro de cosecha"
+                id: 2,
+                title: '🔗 Ambiente Organizacional',
+                content: 'Cadena heterogénea y atomizada. Falta coordinación entre múltiples actores',
+                details: 'Productores → frigoríficos → matarífes → abastecedores → supermercados',
+                analogy: '💡 Como orquesta donde cada músico toca solo, sin director',
+                status: 'new'
+            },
+            {
+                id: 3,
+                title: '🔬 Ambiente Tecnológico',
+                content: 'Bajo nivel de adopción tecnológica, especialmente fuera de región pampeana',
+                details: 'Poca inversión en genética, pasturas, equipamiento, trazabilidad digital',
+                analogy: '💡 Como usar máquina de escribir cuando otros usan computadoras',
+                status: 'new'
+            },
+            {
+                id: 4,
+                title: '📈 Contratos CALL',
+                content: 'Opción de COMPRA: derecho (no obligación) a comprar a precio fijo',
+                details: 'Si precio sube → ejerces. Si baja → solo pierdes prima',
+                analogy: '💡 Como reservar entrada a recital a precio fijo por anticipado',
+                status: 'new'
+            },
+            {
+                id: 5,
+                title: '📉 Contratos PUT',
+                content: 'Opción de VENTA: derecho (no obligación) a vender a precio fijo',
+                details: 'Si precio baja → ejerces. Si sube → solo pierdes prima',
+                analogy: '💡 Como seguro de cosecha para asegurar precio mínimo',
+                status: 'new'
+            },
+            {
+                id: 6,
+                title: '🏆 Caso PRINEX',
+                content: 'NO es integración vertical. Es sistema HÍBRIDO de coordinación',
+                details: 'Articula productores, frigoríficos y supermercados por contratos de calidad',
+                analogy: '💡 Franquicia premium con reglas estrictas pero sin ser dueño',
+                status: 'new'
+            },
+            {
+                id: 7,
+                title: '⚖️ Commodities vs Specialties',
+                content: 'Commodities = coordinación por mercado. Specialties = estructuras híbridas',
+                details: 'Commodities se rigen por precio. Specialties por calidad y trazabilidad',
+                analogy: '💡 Feria libre (commodities) vs franquicia premium (specialties)',
+                status: 'new'
+            },
+            {
+                id: 8,
+                title: '📈 Economías de Escala',
+                content: 'Ahorros de costos al aumentar volumen de operación',
+                details: 'Compartir infraestructura (cámaras frío, carga) baja costo unitario',
+                analogy: '💡 Compartir auto entre varios para dividir gastos de viaje',
+                status: 'new'
+            }
+        ];
+
+        const quizQuestions = [
+            {
+                question: "¿Cuál es el principal problema del ambiente institucional?",
+                options: [
+                    "Exceso de tecnología",
+                    "Inestabilidad económica y ausencia de políticas de largo plazo",
+                    "Demasiada coordinación",
+                    "Falta de productores"
+                ],
+                correct: 1,
+                explanation: "La inestabilidad económica y falta de políticas afectan inversión y previsibilidad"
             },
             {
                 question: "¿PRINEX es integración vertical?",
-                answer: "FALSO. PRINEX es un sistema híbrido que articula actores por contratos, NO integración vertical tradicional."
-            },
-            {
-                question: "Diferencia entre Commodities y Specialties",
-                answer: "Commodities: coordinación por mercado (precio)\nSpecialties: estructuras híbridas (calidad y trazabilidad)"
-            },
-            {
-                question: "Problemas del Ambiente Institucional",
-                answer: "Inestabilidad económica, inflación, ausencia de políticas sectoriales de largo plazo.\n\n💡 Como planificar con reglas que cambian"
-            },
-            {
-                question: "¿Qué es el sector informal?",
-                answer: "Actividades económicas fuera del marco legal: sin registro fiscal, sanitario, laboral.\n\n💡 Como 'mercado negro'"
-            },
-            {
-                question: "Economías de primer orden",
-                answer: "Ahorros de costos al aumentar escala. Bajan costos unitarios.\n\n💡 Como compartir auto para dividir gastos"
-            },
-            {
-                question: "Estrategias para eficientizar hortalizas",
-                answer: "Mejorar infraestructura, transparencia de precios, organización de productores, reducir pérdida postcosecha"
-            },
-            {
-                question: "Diferencia venta directa vs indirecta",
-                answer: "Directa: menos escalones, más control, requiere escala\nIndirecta: reduce riesgos, incrementa costos"
-            },
-            {
-                question: "Elementos de control en PRINEX",
-                answer: "Contratos formales, protocolo de calidad, auditorías, marca (Novillo Pampeano), relaciones de largo plazo"
-            }
-        ];
-
-        // Quiz data
-        const quizQuestions = [
-            {
-                question: "¿Cuál es el punto crítico del ambiente institucional en el sistema de carne bovina?",
                 options: [
-                    "Falta de tecnología avanzada",
-                    "Inestabilidad económica y ausencia de políticas sectoriales de largo plazo",
-                    "Exceso de coordinación entre actores",
-                    "Demasiada integración vertical"
-                ],
-                correct: 1
-            },
-            {
-                question: "¿PRINEX es una integración vertical de productores?",
-                options: [
-                    "Verdadero, es integración vertical tradicional",
-                    "Falso, es un sistema híbrido que articula por contratos",
+                    "Verdadero, es integración vertical clásica",
+                    "Falso, es un sistema híbrido que coordina por contratos",
                     "Verdadero, pero solo parcialmente",
                     "Falso, es una cooperativa"
                 ],
-                correct: 1
+                correct: 1,
+                explanation: "PRINEX NO es integración vertical. Es híbrido: articula actores por contratos de calidad"
             },
             {
-                question: "¿Qué estructura de gobernanza es más adecuada para commodities?",
+                question: "En un contrato CALL, si precio final > precio ejercicio:",
                 options: [
-                    "Integración vertical completa",
-                    "Coordinación vía mercado con transacciones por precio",
-                    "Alianzas estratégicas complejas",
-                    "Control gubernamental directo"
+                    "No ejerces la opción",
+                    "Ejerces y ganas la diferencia menos la prima",
+                    "Pierdes toda la inversión",
+                    "Solo pierdes la prima"
                 ],
-                correct: 1
+                correct: 1,
+                explanation: "CALL es opción de compra. Si precio sube, ejerces y ganas la diferencia menos la prima"
             },
             {
-                question: "En un contrato CALL, si el precio final es menor al precio de ejercicio:",
+                question: "¿Qué estructura usan las specialties?",
                 options: [
-                    "Se ejerce la opción y se gana dinero",
-                    "Se pierde toda la inversión",
-                    "Solo se pierde la prima pagada",
-                    "Se debe pagar una penalidad"
+                    "Coordinación simple por mercado",
+                    "Estructuras híbridas con contratos y control de calidad",
+                    "Solo integración vertical",
+                    "No hay coordinación"
                 ],
-                correct: 2
+                correct: 1,
+                explanation: "Specialties requieren estructuras híbridas para coordinar calidad y trazabilidad"
             },
             {
-                question: "¿Cuál es la mejor analogía para las economías de primer orden?",
+                question: "Los 3 ambientes del sistema cárnico son:",
                 options: [
-                    "Como una máquina que se rompe con el uso",
-                    "Como compartir auto entre varios para dividir gastos",
-                    "Como competir en un mercado saturado",
-                    "Como invertir en tecnología cara"
+                    "Económico, social, político",
+                    "Institucional, organizacional, tecnológico",
+                    "Nacional, regional, local",
+                    "Público, privado, mixto"
                 ],
-                correct: 1
+                correct: 1,
+                explanation: "Los 3 ambientes son: Institucional, Organizacional y Tecnológico"
+            },
+            {
+                question: "Las economías de primer orden son:",
+                options: [
+                    "Pérdidas por aumentar escala",
+                    "Ahorros de costos al aumentar escala de operación",
+                    "Costos fijos únicamente",
+                    "Impuestos del gobierno"
+                ],
+                correct: 1,
+                explanation: "Economías de primer orden = ahorros de costos al aumentar volumen"
+            },
+            {
+                question: "El sector informal se caracteriza por:",
+                options: [
+                    "Exceso de regulaciones",
+                    "Actividades fuera del marco legal, sin registros",
+                    "Alta calidad garantizada",
+                    "Solo exportaciones"
+                ],
+                correct: 1,
+                explanation: "Sector informal = sin registro fiscal, sanitario, laboral. Genera competencia desleal"
+            },
+            {
+                question: "Un contrato PUT se usa para:",
+                options: [
+                    "Protegerse contra subas de precio",
+                    "Protegerse contra bajas de precio",
+                    "Especular siempre",
+                    "Aumentar producción"
+                ],
+                correct: 1,
+                explanation: "PUT = opción de venta, protege contra BAJAS de precio (seguro de precio mínimo)"
+            },
+            {
+                question: "PRINEX coordina a través de:",
+                options: [
+                    "Ser dueño de todos los actores",
+                    "Contratos y protocolos de calidad con cada eslabón",
+                    "Control gubernamental",
+                    "Precios únicamente"
+                ],
+                correct: 1,
+                explanation: "PRINEX usa contratos formales y protocolos de calidad para coordinar la cadena"
+            },
+            {
+                question: "¿Cuál NO es un problema del ambiente organizacional?",
+                options: [
+                    "Cadena atomizada",
+                    "Falta de coordinación",
+                    "Exceso de integración vertical",
+                    "Múltiples actores descoordinados"
+                ],
+                correct: 2,
+                explanation: "El problema es FALTA de coordinación, no exceso de integración"
             }
         ];
 
-        // Variables de estado
-        let currentFlashcard = 0;
-        let currentQuestion = 0;
-        let selectedOption = -1;
-        let quizStats = { correct: 0, total: 0 };
+        const flashcards = [
+            {
+                question: "¿Qué es PRINEX exactamente?",
+                answer: "Sistema HÍBRIDO (NO integración vertical)\nCoordina por contratos de calidad\nMarca: Novillo Pampeano"
+            },
+            {
+                question: "Diferencia CALL vs PUT",
+                answer: "CALL = opción de COMPRA (protege contra subas)\nPUT = opción de VENTA (protege contra bajas)\nAmbos: solo pierdes prima si no ejerces"
+            },
+            {
+                question: "3 Ambientes del Sistema Cárnico",
+                answer: "1. INSTITUCIONAL (políticas y estabilidad)\n2. ORGANIZACIONAL (coordinación actores)\n3. TECNOLÓGICO (innovación y adopción)"
+            },
+            {
+                question: "Commodities vs Specialties",
+                answer: "COMMODITIES: Coordinación por mercado (precio)\nSPECIALTIES: Estructuras híbridas (calidad + trazabilidad)"
+            },
+            {
+                question: "Problemas Ambiente Institucional",
+                answer: "• Inestabilidad económica e inflación\n• Ausencia políticas de largo plazo\n• Competencia por suelo con agricultura"
+            },
+            {
+                question: "¿Qué son las economías de primer orden?",
+                answer: "Ahorros de costos al AUMENTAR escala\nEjemplo: compartir cámaras de frío baja costo unitario\n💡 Como dividir gastos de viaje entre varios"
+            },
+            {
+                question: "Sector Informal características",
+                answer: "• Sin registro fiscal, sanitario, laboral\n• Transacciones no declaradas\n• Competencia desleal\n• Frecuente en circuitos cortos"
+            },
+            {
+                question: "Elementos de control en PRINEX",
+                answer: "• Contratos formales con cada eslabón\n• Protocolo de calidad y trazabilidad\n• Auditorías y certificaciones\n• Marca diferenciada (Novillo Pampeano)"
+            },
+            {
+                question: "Ambiente Organizacional problemas",
+                answer: "• Cadena heterogénea y atomizada\n• Múltiples actores descoordinados\n• Falta integración eficiente\n• Dificulta trazabilidad y calidad"
+            },
+            {
+                question: "¿Cuándo ejercer un contrato CALL?",
+                answer: "Ejercer SI: Precio mercado > Precio ejercicio\nNO ejercer SI: Precio mercado ≤ Precio ejercicio\nSolo pierdes prima si no ejerces"
+            }
+        ];
 
-        // Funciones de navegación
-        function showTab(tabName) {
-            // Ocultar todas las pestañas
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-
-            // Mostrar pestaña seleccionada
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // Funciones del mapa conceptual
+        // INICIALIZACIÓN
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.concept-node').forEach(node => {
-                node.addEventListener('click', function() {
-                    const concept = this.dataset.concept;
-                    showConceptInfo(concept);
-                    
-                    // Destacar nodo seleccionado
-                    document.querySelectorAll('.concept-node').forEach(n => n.classList.remove('selected'));
-                    this.classList.add('selected');
-                });
-            });
+            generateConcepts();
+            showQuestion();
+            updateCard();
+            updateStats();
         });
 
-        function showConceptInfo(conceptKey) {
-            const info = concepts[conceptKey];
-            const infoDiv = document.getElementById('conceptInfo');
+        // GENERAR CONCEPTOS
+        function generateConcepts() {
+            const container = document.getElementById('conceptsList');
+            container.innerHTML = '';
             
-            if (info) {
-                infoDiv.innerHTML = `
-                    <h3>${info.title}</h3>
-                    <p>${info.content}</p>
+            concepts.forEach(concept => {
+                const card = document.createElement('div');
+                card.className = `concept-card ${concept.status}`;
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-title">${concept.title}</div>
+                        <div class="card-status status-${concept.status}">${concept.status}</div>
+                    </div>
+                    <div style="margin-bottom: 10px; font-size: 1.1em;"><strong>${concept.content}</strong></div>
+                    <div style="color: #666; margin-bottom: 10px;">${concept.details}</div>
+                    <div style="color: #3498db; font-style: italic;">${concept.analogy}</div>
                 `;
+                
+                card.addEventListener('click', () => studyConcept(concept));
+                container.appendChild(card);
+            });
+        }
+
+        function studyConcept(concept) {
+            if (concept.status === 'new') {
+                concept.status = 'studying';
+                stats.concepts++;
+                updateStats();
+                generateConcepts();
+            } else if (concept.status === 'studying') {
+                concept.status = 'mastered';
+                generateConcepts();
             }
         }
 
-        // Funciones de flashcards
-        function updateFlashcard() {
-            const card = flashcards[currentFlashcard];
-            const front = document.querySelector('.flashcard-front div');
-            const back = document.querySelector('.flashcard-back div');
+        // QUIZ FUNCTIONS
+        function showQuestion() {
+            if (currentQuestionIndex >= quizQuestions.length) {
+                finishQuiz();
+                return;
+            }
             
-            front.innerHTML = `<h3>${card.question}</h3><p style="margin-top: 10px; opacity: 0.8;">Haz clic para ver la respuesta</p>`;
-            back.innerHTML = `<div style="white-space: pre-line;">${card.answer}</div>`;
+            const question = quizQuestions[currentQuestionIndex];
+            document.getElementById('questionCounter').textContent = `Pregunta ${currentQuestionIndex + 1} de ${quizQuestions.length}`;
+            document.getElementById('questionText').textContent = question.question;
             
-            document.getElementById('cardNumber').textContent = currentFlashcard + 1;
+            const optionsList = document.getElementById('optionsList');
+            optionsList.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const li = document.createElement('li');
+                li.textContent = option;
+                li.addEventListener('click', () => selectOption(index));
+                optionsList.appendChild(li);
+            });
+            
+            selectedOption = -1;
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('questionResult').style.display = 'none';
+        }
+
+        function selectOption(optionIndex) {
+            if (selectedOption !== -1) return;
+            
+            selectedOption = optionIndex;
+            stats.questions++;
+            
+            const question = quizQuestions[currentQuestionIndex];
+            const options = document.querySelectorAll('#optionsList li');
+            
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedOption && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            const isCorrect = selectedOption === question.correct;
+            if (isCorrect) {
+                stats.correct++;
+            }
+            
+            // Show explanation
+            const resultDiv = document.getElementById('questionResult');
+            resultDiv.innerHTML = `
+                <div class="result-box ${isCorrect ? 'result-success' : 'result-error'}">
+                    <strong>${isCorrect ? '🎉 ¡Correcto!' : '❌ Incorrecto'}</strong><br>
+                    ${question.explanation}
+                </div>
+            `;
+            resultDiv.style.display = 'block';
+            
+            updateStats();
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            showQuestion();
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            selectedOption = -1;
+            document.getElementById('restartBtn').style.display = 'none';
+            showQuestion();
+        }
+
+        function finishQuiz() {
+            const accuracy = Math.round((stats.correct / stats.questions) * 100);
+            const resultDiv = document.getElementById('questionResult');
+            resultDiv.innerHTML = `
+                <div class="result-box result-success">
+                    <h3>🏆 Quiz Completado!</h3>
+                    <p><strong>Precisión: ${accuracy}%</strong></p>
+                    <p>${accuracy >= 80 ? '¡Excelente dominio!' : accuracy >= 60 ? '¡Buen progreso!' : 'Sigue practicando'}</p>
+                </div>
+            `;
+            resultDiv.style.display = 'block';
+            document.getElementById('restartBtn').style.display = 'inline-block';
+            document.getElementById('nextBtn').style.display = 'none';
+        }
+
+        // FLASHCARDS
+        function updateCard() {
+            const card = flashcards[currentCardIndex];
+            document.getElementById('cardQuestion').innerHTML = `<h3>${card.question}</h3>`;
+            document.getElementById('cardAnswer').innerHTML = `<div style="white-space: pre-line; line-height: 1.4;">${card.answer}</div>`;
+            document.getElementById('cardNumber').textContent = currentCardIndex + 1;
             document.getElementById('totalCards').textContent = flashcards.length;
-            
-            const progress = ((currentFlashcard + 1) / flashcards.length) * 100;
-            document.getElementById('flashcardProgress').style.width = progress + '%';
             
             // Reset flip
             document.getElementById('flashcard').classList.remove('flipped');
@@ -888,165 +1126,150 @@
         }
 
         function nextCard() {
-            currentFlashcard = (currentFlashcard + 1) % flashcards.length;
-            updateFlashcard();
+            currentCardIndex = (currentCardIndex + 1) % flashcards.length;
+            updateCard();
         }
 
-        function previousCard() {
-            currentFlashcard = currentFlashcard > 0 ? currentFlashcard - 1 : flashcards.length - 1;
-            updateFlashcard();
+        function prevCard() {
+            currentCardIndex = currentCardIndex > 0 ? currentCardIndex - 1 : flashcards.length - 1;
+            updateCard();
         }
 
-        // Funciones del quiz
-        function updateQuizStats() {
-            document.getElementById('correctAnswers').textContent = quizStats.correct;
-            document.getElementById('totalQuestions').textContent = quizStats.total;
-            const accuracy = quizStats.total > 0 ? Math.round((quizStats.correct / quizStats.total) * 100) : 0;
-            document.getElementById('accuracy').textContent = accuracy + '%';
-        }
-
-        function showQuestion() {
-            const question = quizQuestions[currentQuestion];
-            document.getElementById('question').textContent = question.question;
-            
-            const optionsList = document.getElementById('options');
-            optionsList.innerHTML = '';
-            
-            question.options.forEach((option, index) => {
-                const li = document.createElement('li');
-                li.textContent = option;
-                li.onclick = () => selectOption(index);
-                optionsList.appendChild(li);
-            });
-            
-            document.getElementById('quizResult').style.display = 'none';
-            document.getElementById('nextBtn').style.display = 'none';
-            document.getElementById('restartBtn').style.display = 'none';
-            selectedOption = -1;
-        }
-
-        function selectOption(optionIndex) {
-            if (selectedOption !== -1) return; // Ya respondió
-            
-            selectedOption = optionIndex;
-            const question = quizQuestions[currentQuestion];
-            const options = document.querySelectorAll('#options li');
-            
-            options.forEach((option, index) => {
-                if (index === question.correct) {
-                    option.classList.add('correct');
-                } else if (index === selectedOption && index !== question.correct) {
-                    option.classList.add('incorrect');
-                }
-            });
-            
-            quizStats.total++;
-            const resultDiv = document.getElementById('quizResult');
-            
-            if (selectedOption === question.correct) {
-                quizStats.correct++;
-                resultDiv.textContent = '🎉 ¡Correcto! Excelente respuesta.';
-                resultDiv.className = 'quiz-result good';
-            } else {
-                resultDiv.textContent = '❌ Incorrecto. La respuesta correcta está marcada en verde.';
-                resultDiv.className = 'quiz-result bad';
-            }
-            
-            resultDiv.style.display = 'block';
-            updateQuizStats();
-            
-            if (currentQuestion < quizQuestions.length - 1) {
-                document.getElementById('nextBtn').style.display = 'inline-block';
-            } else {
-                document.getElementById('restartBtn').style.display = 'inline-block';
-            }
-        }
-
-        function nextQuestion() {
-            currentQuestion++;
-            if (currentQuestion < quizQuestions.length) {
-                showQuestion();
-            }
-        }
-
-        function restartQuiz() {
-            currentQuestion = 0;
-            quizStats = { correct: 0, total: 0 };
-            updateQuizStats();
-            showQuestion();
-        }
-
-        // Funciones del simulador
-        function calculateContract() {
+        // SIMULATOR
+        function calculateResult() {
             const contractType = document.getElementById('contractType').value;
             const premium = parseFloat(document.getElementById('premium').value);
             const strikePrice = parseFloat(document.getElementById('strikePrice').value);
             const marketPrice = parseFloat(document.getElementById('marketPrice').value);
             
-            let result = '';
             let profit = 0;
             let action = '';
+            let explanation = '';
             
             if (contractType === 'call') {
                 if (marketPrice > strikePrice) {
                     profit = marketPrice - strikePrice - premium;
-                    action = 'SE EJERCE la opción';
+                    action = 'SE EJERCE ✅';
+                    explanation = `Ganamos porque precio final (${marketPrice}) > precio ejercicio (${strikePrice})`;
                 } else {
                     profit = -premium;
-                    action = 'NO se ejerce la opción';
+                    action = 'NO se ejerce ❌';
+                    explanation = `No conviene ejercer. Precio final (${marketPrice}) ≤ precio ejercicio (${strikePrice})`;
                 }
-                
-                result = `
-                    <h3>📈 Resultado Contrato CALL</h3>
-                    <p><strong>Situación:</strong> ${action}</p>
-                    <p><strong>Análisis:</strong></p>
-                    <ul>
-                        <li>Precio de mercado ($${marketPrice}) ${marketPrice > strikePrice ? '>' : '≤'} Precio de ejercicio ($${strikePrice})</li>
-                        <li>Prima pagada: $${premium}</li>
-                        ${marketPrice > strikePrice ? 
-                            `<li>Ganancia por ejercer: $${marketPrice} - $${strikePrice} = $${marketPrice - strikePrice}</li>` : 
-                            '<li>No conviene ejercer la opción</li>'
-                        }
-                    </ul>
-                    <p><strong>Resultado final: ${profit >= 0 ? '🟢' : '🔴'} $${profit.toFixed(2)}</strong></p>
-                    <p><em>💡 Analogía: ${marketPrice > strikePrice ? 'Usaste tu reserva porque el precio subió' : 'No usaste la reserva, solo perdiste lo que pagaste por reservar'}</em></p>
-                `;
             } else {
                 if (marketPrice < strikePrice) {
                     profit = strikePrice - marketPrice - premium;
-                    action = 'SE EJERCE la opción';
+                    action = 'SE EJERCE ✅';
+                    explanation = `Ganamos porque precio final (${marketPrice}) < precio ejercicio (${strikePrice})`;
                 } else {
                     profit = -premium;
-                    action = 'NO se ejerce la opción';
+                    action = 'NO se ejerce ❌';
+                    explanation = `No conviene ejercer. Precio final (${marketPrice}) ≥ precio ejercicio (${strikePrice})`;
                 }
-                
-                result = `
-                    <h3>📉 Resultado Contrato PUT</h3>
-                    <p><strong>Situación:</strong> ${action}</p>
-                    <p><strong>Análisis:</strong></p>
-                    <ul>
-                        <li>Precio de mercado ($${marketPrice}) ${marketPrice < strikePrice ? '<' : '≥'} Precio de ejercicio ($${strikePrice})</li>
-                        <li>Prima pagada: $${premium}</li>
-                        ${marketPrice < strikePrice ? 
-                            `<li>Ganancia por ejercer: $${strikePrice} - $${marketPrice} = $${strikePrice - marketPrice}</li>` : 
-                            '<li>No conviene ejercer la opción</li>'
-                        }
-                    </ul>
-                    <p><strong>Resultado final: ${profit >= 0 ? '🟢' : '🔴'} $${profit.toFixed(2)}</strong></p>
-                    <p><em>💡 Analogía: ${marketPrice < strikePrice ? 'Activaste el seguro porque el precio bajó' : 'No activaste el seguro, solo perdiste la prima'}</em></p>
-                `;
             }
             
-            document.getElementById('simulationResult').innerHTML = result;
-            document.getElementById('simulationResult').style.display = 'block';
+            const resultDiv = document.getElementById('simulatorResult');
+            resultDiv.innerHTML = `
+                <div class="result-box ${profit >= 0 ? 'result-success' : 'result-error'}">
+                    <h3>${contractType.toUpperCase()} - ${profit >= 0 ? '🟢 GANANCIA' : '🔴 PÉRDIDA'}: $${profit.toFixed(2)}</h3>
+                    <p><strong>Decisión:</strong> ${action}</p>
+                    <p><strong>Explicación:</strong> ${explanation}</p>
+                    <p><strong>Prima pagada:</strong> $${premium}</p>
+                    <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                        <strong>💡 Recordatorio:</strong> ${contractType === 'call' ? 
+                            'CALL protege contra SUBAS. Ejercemos si precio sube.' : 
+                            'PUT protege contra BAJAS. Ejercemos si precio baja.'}
+                    </div>
+                </div>
+            `;
+            resultDiv.style.display = 'block';
         }
 
-        // Inicialización
-        document.addEventListener('DOMContentLoaded', function() {
-            updateFlashcard();
+        function generateRandomScenario() {
+            const scenarios = [
+                { type: 'call', premium: 15, strike: 95, market: 110 },
+                { type: 'put', premium: 12, strike: 100, market: 85 },
+                { type: 'call', premium: 8, strike: 105, market: 98 },
+                { type: 'put', premium: 20, strike: 90, market: 105 }
+            ];
+            
+            const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+            document.getElementById('contractType').value = scenario.type;
+            document.getElementById('premium').value = scenario.premium;
+            document.getElementById('strikePrice').value = scenario.strike;
+            document.getElementById('marketPrice').value = scenario.market;
+        }
+
+        // NAVIGATION
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // QUICK ACTIONS
+        function quickQuiz() {
+            showTab('quiz');
+            currentQuestionIndex = 0;
             showQuestion();
-            updateQuizStats();
-        });
+        }
+
+        function randomCard() {
+            showTab('flashcards');
+            currentCardIndex = Math.floor(Math.random() * flashcards.length);
+            updateCard();
+        }
+
+        function openSimulator() {
+            showTab('simulator');
+            generateRandomScenario();
+        }
+
+        // STUDY PLAN
+        function goToPhase(phase) {
+            const blocks = document.querySelectorAll('.plan-block');
+            blocks.forEach((block, index) => {
+                block.classList.remove('active', 'completed');
+                if (index + 1 === phase) {
+                    block.classList.add('active');
+                } else if (index + 1 < phase) {
+                    block.classList.add('completed');
+                }
+            });
+            
+            // Navigate to appropriate tab based on phase
+            const phaseActions = {
+                1: () => showTab('concepts'),
+                2: () => showTab('simulator'),
+                3: () => showTab('concepts'),
+                4: () => showTab('flashcards'),
+                5: () => showTab('tips')
+            };
+            
+            if (phaseActions[phase]) {
+                phaseActions[phase]();
+            }
+        }
+
+        // UPDATE STATS
+        function updateStats() {
+            document.getElementById('questionsCount').textContent = stats.questions;
+            document.getElementById('correctCount').textContent = stats.correct;
+            document.getElementById('conceptsCount').textContent = stats.concepts;
+            
+            const accuracy = stats.questions > 0 ? Math.round((stats.correct / stats.questions) * 100) : 0;
+            document.getElementById('accuracyPercent').textContent = `${accuracy}%`;
+            
+            document.getElementById('quizScore').textContent = `Score: ${stats.correct}/${stats.questions}`;
+        }
     </script>
 </body>
 </html>
