@@ -30,7 +30,7 @@
         .header {
             background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
-            padding: 20px;
+            padding: 10px 15px;
             text-align: center;
             position: sticky;
             top: 0;
@@ -38,15 +38,21 @@
         }
 
         .header h1 {
-            font-size: 2.2em;
-            margin-bottom: 10px;
+            font-size: 1.4em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 0.8em;
+            margin-bottom: 8px;
+            opacity: 0.9;
         }
 
         .stats {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 15px;
+            gap: 15px;
+            margin-top: 5px;
         }
 
         .stat {
@@ -54,13 +60,13 @@
         }
 
         .stat-number {
-            font-size: 1.8em;
+            font-size: 1.1em;
             font-weight: bold;
             color: #f39c12;
         }
 
         .stat-label {
-            font-size: 0.9em;
+            font-size: 0.7em;
             opacity: 0.9;
         }
 
@@ -68,9 +74,20 @@
         .study-plan {
             background: linear-gradient(135deg, #2ecc71, #27ae60);
             color: white;
-            padding: 20px;
-            margin: 20px;
+            padding: 12px 15px;
+            margin: 10px;
             border-radius: 15px;
+        }
+
+        .study-plan h2 {
+            font-size: 1.2em;
+            margin-bottom: 3px;
+        }
+
+        .study-plan p {
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            opacity: 0.9;
         }
 
         .plan-blocks {
@@ -444,6 +461,33 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            .header {
+                padding: 5px 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.1em;
+                margin-bottom: 2px;
+            }
+            
+            .header p {
+                font-size: 0.7em;
+                margin-bottom: 3px;
+            }
+            
+            .stats {
+                gap: 10px;
+                margin-top: 3px;
+            }
+            
+            .stat-number {
+                font-size: 0.9em;
+            }
+            
+            .stat-label {
+                font-size: 0.6em;
+            }
+            
             .content {
                 padding: 15px;
             }
@@ -452,11 +496,6 @@
                 width: 300px;
                 height: 220px;
             }
-            
-            .stats {
-                flex-direction: column;
-                gap: 15px;
-            }
 
             .input-grid {
                 grid-template-columns: 1fr;
@@ -464,6 +503,64 @@
 
             .plan-blocks {
                 grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                font-size: 0.85em;
+            }
+            
+            .tab {
+                padding: 12px 8px;
+                min-width: 100px;
+            }
+            
+            .study-plan {
+                margin: 5px;
+                padding: 8px 10px;
+            }
+            
+            .study-plan h2 {
+                font-size: 1em;
+                margin-bottom: 2px;
+            }
+            
+            .study-plan p {
+                font-size: 0.7em;
+                margin-bottom: 5px;
+            }
+            
+            .plan-blocks {
+                gap: 8px;
+                margin-top: 5px;
+            }
+            
+            .plan-block {
+                padding: 8px;
+            }
+            
+            .plan-block h3 {
+                font-size: 0.8em;
+                margin-bottom: 2px;
+            }
+            
+            .plan-block p {
+                font-size: 0.7em;
+                margin: 1px 0;
+            }
+            
+            .plan-block small {
+                font-size: 0.6em;
+            }
+            
+            .quick-actions {
+                margin: 10px 0;
+            }
+            
+            .quick-btn {
+                padding: 8px 12px;
+                margin: 2px;
+                font-size: 0.8em;
+                border-radius: 8px;
             }
         }
 
